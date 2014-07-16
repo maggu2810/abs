@@ -1,0 +1,22 @@
+# https://wiki.archlinux.org/index.php/VCS_PKGBUILD_Guidelines#Git
+
+_gitname="cubietruck-setup"
+_gitroot="git@10.10.10.230/rathgeb/""$_gitname"".git"
+
+pkgname=brcm40183-bt-iface
+
+arch=('any')
+source=('git+ssh://'"$_gitroot")
+md5sums=('SKIP')
+install="${pkgname}.install"
+
+pkgver=r49.c687d7e
+pkgrel=1
+pkgver() {
+	cd "$srcdir/$_gitname"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+	cp -ax "$srcdir"/"$_gitname"/bt-ct/* "$pkgdir"/
+}
