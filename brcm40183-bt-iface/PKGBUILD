@@ -10,6 +10,8 @@ source=('git+ssh://'"$_gitroot")
 md5sums=('SKIP')
 install="${pkgname}.install"
 
+depends=('brcm_patchram_plus-git')
+
 pkgver=r49.c687d7e
 pkgrel=1
 pkgver() {
