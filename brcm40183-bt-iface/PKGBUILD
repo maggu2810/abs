@@ -1,7 +1,7 @@
 # https://wiki.archlinux.org/index.php/VCS_PKGBUILD_Guidelines#Git
 
-_gitname="cubietruck-setup"
-_gitroot="git@10.10.10.230/rathgeb/""$_gitname"".git"
+_gitname="cubietruck-bluetooth"
+_gitroot="git@github.com/maggu2810/""$_gitname"".git"
 
 pkgname=brcm40183-bt-iface
 
@@ -12,7 +12,7 @@ install="${pkgname}.install"
 
 depends=('brcm_patchram_plus-git')
 
-pkgver=r49.c687d7e
+pkgver=20140720
 pkgrel=1
 pkgver() {
 	cd "$srcdir/$_gitname"
@@ -20,5 +20,5 @@ pkgver() {
 }
 
 package() {
-	cp -ax "$srcdir"/"$_gitname"/bt-ct/* "$pkgdir"/
+	cp -ax "$srcdir"/"$_gitname"/root/* "$pkgdir"/
 }
