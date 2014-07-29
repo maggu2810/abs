@@ -16,9 +16,7 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'uboot-mkimage' 'git')
 options=('!strip')
 source=("https://github.com/maggu2810/linux-kernel/archive/${_commit}.tar.gz")
-md5sums=('dbf73f4cb6b1399e73449f4e91bf5694'
-         '75d4998cd9544be9423d80564441ec31'
-         '07c260ca97572a830778362c7b744f9c')
+md5sums=('284f8566ce90a5414bf40ffcd9575aca')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -195,25 +193,25 @@ _package-headers() {
   cp drivers/media/dvb/dvb-core/*.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/dvb-core/"
   # and...
   # http://bugs.archlinux.org/task/11194
-  mkdir -p "${pkgdir}/usr/src/linux-${_kernver}/include/config/dvb/"
-  cp include/config/dvb/*.h "${pkgdir}/usr/src/linux-${_kernver}/include/config/dvb/"
+  #maggu2810: TODO#mkdir -p "${pkgdir}/usr/src/linux-${_kernver}/include/config/dvb/"
+  #maggu2810: TODO#cp include/config/dvb/*.h "${pkgdir}/usr/src/linux-${_kernver}/include/config/dvb/"
 
   # add dvb headers for http://mcentral.de/hg/~mrec/em28xx-new
   # in reference to:
   # http://bugs.archlinux.org/task/13146
   mkdir -p "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/frontends/"
-  cp drivers/media/dvb/frontends/lgdt330x.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/frontends/"
-  cp drivers/media/video/msp3400-driver.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/frontends/"
+  #maggu2810: TODO#cp drivers/media/dvb/frontends/lgdt330x.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/frontends/"
+  #maggu2810: TODO#cp drivers/media/video/msp3400-driver.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/frontends/"
 
   # add dvb headers
   # in reference to:
   # http://bugs.archlinux.org/task/20402
   mkdir -p "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/dvb-usb"
-  cp drivers/media/dvb/dvb-usb/*.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/dvb-usb/"
+  #maggu2810: TODO#cp drivers/media/dvb/dvb-usb/*.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/dvb-usb/"
   mkdir -p "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/frontends"
-  cp drivers/media/dvb/frontends/*.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/frontends/"
+  #maggu2810: TODO#cp drivers/media/dvb/frontends/*.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/dvb/frontends/"
   mkdir -p "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/common/tuners"
-  cp drivers/media/common/tuners/*.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/common/tuners/"
+  #maggu2810: TODO#cp drivers/media/common/tuners/*.h "${pkgdir}/usr/src/linux-${_kernver}/drivers/media/common/tuners/"
 
   # add xfs and shmem for aufs building
   mkdir -p "${pkgdir}/usr/src/linux-${_kernver}/fs/xfs"
