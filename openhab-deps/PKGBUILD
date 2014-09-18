@@ -1,0 +1,73 @@
+# Maintainer: Markus Rathgeb <maggu2810@gmail.com>
+
+pkgname=openhab-deps
+pkgver=0.1
+pkgrel=3
+pkgdesc="openhab stuff for Arch Linux"
+arch=('any')
+license=('GPL')
+depends=('start-stop-daemon' 'dpkg' 'adduser-deb')
+install=openhab-deps.install
+
+package() {
+
+	#
+	# /lib/lsb/init-functions
+	#
+
+	mkdir -p "${pkgdir}"/lib/lsb
+	echo '#!/bin/sh
+echo "DUMMY init-functions: ${0} ${*}"
+
+log_daemon_msg() {
+	echo "log_daemon_msg: ${*}"
+}
+
+log_failure_msg() {
+	echo "log_failure_msg: ${*}"
+}
+
+log_end_msg() {
+	echo "log_end_msg: ${*}"
+}
+' > "${pkgdir}"/lib/lsb/init-functions
+
+	#
+	# /lib/init/vars.sh
+	#
+
+	mkdir -p "${pkgdir}"/lib/init
+	touch "${pkgdir}"/lib/init/vars.sh
+
+	#
+	# /usr/bin/update-rc.d
+	#
+
+	mkdir -p "${pkgdir}"/usr/bin
+	touch "${pkgdir}"/usr/bin/update-rc.d
+	chmod 0755 "${pkgdir}"/usr/bin/update-rc.d
+	chown 0:0 "${pkgdir}"/usr/bin/update-rc.d
+
+	#
+	# /usr/lib/systemd/system//openhab.service
+	#
+
+	local SYSTEMD_SERVICE_PATH="${pkgdir}/usr/lib/systemd/system"
+	mkdir -p "${SYSTEMD_SERVICE_PATH}"
+	echo '# Test unit for openhab
+[Unit]
+Description=openHAB
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/etc/init.d/openhab start
+ExecStop=/etc/init.d/openhab start
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+' > "${SYSTEMD_SERVICE_PATH}"/openhab.service
+	
+}
+md5sums=()
