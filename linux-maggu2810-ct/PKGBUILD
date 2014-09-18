@@ -16,7 +16,7 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'uboot-mkimage' 'git')
 options=('!strip')
 source=("https://github.com/maggu2810/linux-kernel/archive/${_commit}.tar.gz")
-md5sums=('284f8566ce90a5414bf40ffcd9575aca')
+md5sums=('d4c10e5a8d0e5aeee1ab288edaf1c70d')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
