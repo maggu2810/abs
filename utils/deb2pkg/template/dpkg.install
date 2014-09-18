@@ -1,0 +1,17 @@
+remove_deb() {
+	rm -f /var/openhab/##DEB##
+}
+
+pre_install() {
+	remove_deb
+}
+
+post_install() {
+	dpkg -i /var/openhab/##DEB##
+	remove_deb
+}
+
+pre_remove() {
+	dpkg -r ##PKGNAME##
+	remove_deb
+}

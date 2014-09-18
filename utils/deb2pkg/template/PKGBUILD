@@ -1,0 +1,20 @@
+# Maintainer: Markus Rathgeb <maggu2810@gmail.com>
+
+pkgname=##PKGNAME##
+pkgver=1.6.0.20140917.112832
+pkgrel=1
+pkgdesc="##PKGNAME##"
+arch=('any')
+url="http://www.openhab.org"
+license=('EPL')
+depends=('openhab-deps')
+src_file=##DEB##
+source=("http://127.0.0.1/~rathgeb/openhab/${src_file}")
+install=dpkg.install
+
+package() {
+	mkdir -p "${pkgdir}"/var/openhab/
+	cp "${src_file}" "${pkgdir}"/var/openhab/${src_file}
+}
+
+md5sums=('32a629d8d0b43c6a705207544bff167e')

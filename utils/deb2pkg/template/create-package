@@ -1,0 +1,11 @@
+#!/bin/sh
+
+SRC_FILE=##DEB##
+
+VERSION=0
+
+rm -f "${SRC_FILE}"
+sed 's:^\(src_file=\).*:\1'"${SRC_FILE}"':g' -i PKGBUILD
+sed 's:^\(pkgver=\).*:\1'"${VERSION}"'.'`date "+%Y%m%d.%H%M%S"`':g' -i PKGBUILD
+updpkgsums
+makepkg -f
