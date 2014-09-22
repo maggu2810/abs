@@ -24,6 +24,7 @@ create_arch_linux_pkg() {
 	mkdir "${TMP_PKG_DIR}"
 
 	cp "${TEMPLATE_DIR}"/* "${TMP_PKG_DIR}"/
+	cp "${DEB_PATH}" "${TMP_PKG_DIR}"/
 
 	find "${TMP_PKG_DIR}" -type f | while read FILE
 	do
