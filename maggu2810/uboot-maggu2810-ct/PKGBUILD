@@ -1,0 +1,43 @@
+pkgname=uboot-maggu2810-ct
+pkgver=2014.04
+pkgrel=1
+arch=('armv7h')
+license=('GPL')
+makedepends=('sunxi-tools')
+_commit_uboot=a77c9880d7da9566ff37ebe49c2f8957ce88522f
+_commit_env=ca4196baf686e500e6b3ca1e82528686e6c64d9a
+_commit_fex=1b974dc970db61db6883c90d629802b41ebfbfee
+install="${pkgname}".install
+source=("https://github.com/maggu2810/u-boot/archive/${_commit_uboot}.tar.gz"
+	"https://github.com/maggu2810/u-boot/archive/${_commit_env}.tar.gz"
+	"https://github.com/maggu2810/ct-fex/archive/${_commit_fex}.tar.gz"
+)
+
+build() {
+	cd "u-boot-${_commit_uboot}"
+
+	unset CFLAGS
+	unset CXXFLAGS
+	unset LDFLAGS
+
+	for i in Cubietruck; do
+		BUILDDIR="../bin_${i}"
+
+		rm -rf "${BUILDDIR}" && mkdir -p "${BUILDDIR}" && BUILDDIR="`readlink -e "${BUILDDIR}"`"
+
+		make O="${BUILDDIR}" ${i}_config
+		make O="${BUILDDIR}"
+	done
+}
+
+package() {
+	install -m0755 -d "${pkgdir}"/boot
+	cp -ax bin_Cubietruck/u-boot-sunxi-with-spl.bin "${pkgdir}"/boot
+
+	fex2bin "${srcdir}"/"ct-fex-${_commit_fex}"/sys_config.fex "${pkgdir}"/boot/script.bin
+	cp "${srcdir}/u-boot-${_commit_env}/uEnv.txt" "${pkgdir}"/boot/uEnv.txt
+}
+
+md5sums=('9a89e43507307b8f4e380530bbc05144'
+         '67ff4bfc0b61190b930d3e538b7c7db8'
+         '5d6690d29cfc37abaf148a1a8b2ba61e')
