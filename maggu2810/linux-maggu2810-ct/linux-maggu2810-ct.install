@@ -2,7 +2,7 @@
 # arg 2:  the old package version
 
 KERNEL_NAME=-maggu2810-ct
-KERNEL_VERSION=3.4.103-4
+KERNEL_VERSION=3.4.103-6
 
 post_install () {
   # updating module dependencies
