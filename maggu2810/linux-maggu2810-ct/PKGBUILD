@@ -4,19 +4,19 @@
 buildarch=4
 
 pkgbase=linux-maggu2810-ct
-_commit=a96c3d55981551ff2206b68056b3f6579c051368
+_commit=0dc921cdce4398744913330fd3b7c7defa062d24
 _srcname=linux-kernel-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="maggu2810-ct"
 pkgver=3.4.103
-pkgrel=6
+pkgrel=7
 arch=('armv7h')
 url="https://github.com/maggu2810/linux-kernel/tree/sunxi-3.4-mod/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'uboot-mkimage' 'git')
 options=('!strip')
 source=("https://github.com/maggu2810/linux-kernel/archive/${_commit}.tar.gz")
-md5sums=('804d72e1b5e3c8a0ceada446e51692ae')
+md5sums=('9508d5c782fce4dc7e4748dd26d4db5e')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
